@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,19 +7,32 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
     margin: '0 auto',
-    marginTop: 50, 
+    marginTop: 50,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    padding: '60px',
   },
 }));
 
 export default function InfoPanel() {
-  const classes = useStyles();
+  // const [globalData, setGlobalData] = useState({});
 
+  useEffect(() => {
+
+    async function getData() {
+      const response = await fetch("https://api.thevirustracker.com/free-api?global=stats")
+      let data = await response.json();
+      console.log(data.results[0]);
+      console.log(data[1]);
+      // setGlobalData(data.GLOBAL[0]);
+    }
+    getData();
+
+  }, [])
+
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
