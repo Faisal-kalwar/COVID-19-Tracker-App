@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { blue } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  title:{
+    color: '#3f51b5',
+  }
 }));
 
 export default function InfoPanel() {
@@ -40,7 +44,7 @@ export default function InfoPanel() {
           return (
             <Grid item xs={12} sm={4}>
               <Paper className={classes.paper} elevation={3}>
-                <h3>{key}</h3>
+                <h3 className={classes.title}>{key.toUpperCase()}</h3>
                 <h3>{globalData[key]}</h3>
                 </Paper>
             </Grid>
